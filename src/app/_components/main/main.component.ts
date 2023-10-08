@@ -34,9 +34,9 @@ export class MainComponent {
       const elementH = document.getElementById('h') as HTMLElement
       const elementH2 = document.getElementById('h2') as HTMLElement
 
-      elementI.textContent = requestItem.quote as string
+      elementI.textContent = '"'+requestItem.quote+'"' as string
       elementH.textContent = requestItem.category as string
-      elementH2.textContent = requestItem.author as string
+      elementH2.textContent = "-"+requestItem.author as string
     })
   }
 }
