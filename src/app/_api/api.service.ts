@@ -8,6 +8,13 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
   public url: String  = ""
+
+
+  constructor(private http: HttpClient) { 
+    this.url = "https://api.api-ninjas.com/v1/quotes?category="
+  }
+
+
   private categories = ['age',
     'alone',
     'amazing',
@@ -76,12 +83,29 @@ export class ApiService {
     'movies',
     'success']
 
-  constructor(private http: HttpClient) { 
-    this.url = "https://api.api-ninjas.com/v1/quotes?category="
-  }
-
   getRandomQuote(): Observable<any>{
     const apiReturn = this.http.get(this.url+this.categories[Math.floor(Math.random() * this.categories.length)], {headers: new HttpHeaders().set("X-Api-Key", "43iaH7MVUUxvxV4izuGCeQ==R6wmFW5FK3ZSLuWc")});
     return apiReturn
+  }
+
+  checkLoginCredentials(username: string, password: string): void{
+
+    const url = 'http://localhost:3000/users/login';
+
+    const body = {
+      "username": username,
+      "password": password
+    }
+
+    this.http.post(url, body).subscribe(
+      (response) => {
+        // Handle the response here
+        console.log(response);
+      },
+      (error) => {
+        // Handle any errors here
+        console.error(error);
+      }
+    );
   }
 }

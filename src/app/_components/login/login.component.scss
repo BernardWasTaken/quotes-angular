@@ -1,0 +1,43 @@
+.container {
+    width: 25%;
+    height: 25%;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+}
+
+.username,
+.password {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    height: fit-content;
+}
+
+h1{
+    order: 1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: -150px;
+}
+
+.username {
+    order: 2;
+}
+
+.password {
+    order: 3;
+}
+
+button{
+    order: 4;
+    height: fit-content;
+    width: fit-content;
+}
