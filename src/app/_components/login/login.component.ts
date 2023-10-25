@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
+import { Route, Router } from '@angular/router';
 import { ApiService } from 'src/app/_api/api.service';
 
 @Component({
@@ -8,10 +10,18 @@ import { ApiService } from 'src/app/_api/api.service';
 })
 export class LoginComponent {
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
-  onLogin(username: string, password: string): void{
-    this.apiService.checkLoginCredentials(username, password);
+  afterLogin(): void{
+    this.router.navigate(['/'])
+  }
+
+  onLogin(username: string, password: string){
+    this.apiService.checkLoginCredentials(username, password).subscribe(data => {
+      if(data.toString()){
+        this.afterLogin();
+      }
+    });
   }
 
 }

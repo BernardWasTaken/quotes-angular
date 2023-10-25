@@ -9,6 +9,8 @@ export class ApiService {
 
   public url: String  = ""
 
+  public value: string = ""
+
 
   constructor(private http: HttpClient) { 
     this.url = "https://api.api-ninjas.com/v1/quotes?category="
@@ -88,7 +90,7 @@ export class ApiService {
     return apiReturn
   }
 
-  checkLoginCredentials(username: string, password: string): void{
+  checkLoginCredentials(username: string, password: string){
 
     const url = 'http://localhost:3000/users/login';
 
@@ -97,15 +99,6 @@ export class ApiService {
       "password": password
     }
 
-    this.http.post(url, body).subscribe(
-      (response) => {
-        // Handle the response here
-        console.log(response);
-      },
-      (error) => {
-        // Handle any errors here
-        console.error(error);
-      }
-    );
+    return this.http.post(url, body);
   }
 }
