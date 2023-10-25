@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { waitForAsync } from '@angular/core/testing';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/_api/api.service';
+import { GlobalsService } from 'src/app/_auth/globals.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +10,10 @@ import { ApiService } from 'src/app/_api/api.service';
 })
 export class LoginComponent {
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router, private authService: GlobalsService) {}
 
   afterLogin(): void{
+    this.authService.setAuthenticated(true);
     this.router.navigate(['/'])
   }
 
