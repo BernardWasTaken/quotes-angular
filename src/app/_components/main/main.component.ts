@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/_api/api.service';
+import { GlobalsService } from 'src/app/_auth/globals.service';
 
 interface quote{
   quote: String,
@@ -18,7 +19,7 @@ export class MainComponent {
 
   quote: String = ""
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private authService: GlobalsService) {
     
   }
 
@@ -38,5 +39,9 @@ export class MainComponent {
       elementH.textContent = requestItem.category as string
       elementH2.textContent = "-"+requestItem.author as string
     })
+  }
+
+  logout(): void{
+    this.authService.destroyAuthentication();
   }
 }

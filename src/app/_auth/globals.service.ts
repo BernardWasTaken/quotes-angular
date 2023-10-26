@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalsService {
 
-  private isLoggedIn = false
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   getAuthenticated(): boolean{
-    return this.isLoggedIn;
+    if(localStorage.getItem("username")){
+      return true;
+    }
+    return false;
   }
 
-  setAuthenticated(value: boolean): void{
-    this.isLoggedIn = value;
+
+  setAuthenticated(username: string): void{
+    localStorage.setItem("username", username);
+  }
+
+
+  destroyAuthentication(): void{
+    localStorage.removeItem("username");
+    this.router.navigate(['/login']);
   }
 }

@@ -12,15 +12,15 @@ export class LoginComponent {
 
   constructor(private apiService: ApiService, private router: Router, private authService: GlobalsService) {}
 
-  afterLogin(): void{
-    this.authService.setAuthenticated(true);
+  afterLogin(username: string): void{
+    this.authService.setAuthenticated(username);
     this.router.navigate(['/'])
   }
 
   onLogin(username: string, password: string){
     this.apiService.checkLoginCredentials(username, password).subscribe(data => {
       if(data.toString()){
-        this.afterLogin();
+        this.afterLogin(username);
       }
     });
   }
