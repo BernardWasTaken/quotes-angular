@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/_api/api.service';
 import { GlobalsService } from 'src/app/_auth/globals.service';
 
@@ -19,7 +20,7 @@ export class MainComponent {
 
   quote: String = ""
 
-  constructor(private apiService: ApiService, private authService: GlobalsService) {
+  constructor(private apiService: ApiService, private authService: GlobalsService, private router: Router) {
     
   }
 
@@ -43,5 +44,9 @@ export class MainComponent {
 
   logout(): void{
     this.authService.destroyAuthentication();
+  }
+
+  onProfileClick(): void{
+    this.router.navigate(['/profile']) 
   }
 }
