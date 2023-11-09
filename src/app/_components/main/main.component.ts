@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { sequenceEqual } from 'rxjs';
 import { ApiService } from 'src/app/_api/api.service';
 import { GlobalsService } from 'src/app/_auth/globals.service';
 
@@ -19,9 +20,31 @@ interface quote{
 export class MainComponent {
 
   quote: String = ""
+  quotes: quote[] = []
 
   constructor(private apiService: ApiService, private authService: GlobalsService, private router: Router) {
-    
+    this.fillFeedwithQuotes();
+  }
+
+  fillFeedwithQuotes(): void{
+
+    this.apiService.getAllQuotes().subscribe((data: any[]) => {
+      data.forEach((element: any) => {
+        console.log(element);
+
+        const seperateQuote: quote = {
+          quote: element.content,
+          author: element.author_id,
+          category: element.theme_id
+        }
+
+        this.quotes.push(seperateQuote)
+      });
+
+      console.log(this.quotes);
+    })
+
+
   }
 
   readResponse(): void{

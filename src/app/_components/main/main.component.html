@@ -1,10 +1,12 @@
 <body>
     <div class="container">
-        <h2 id="h">Category</h2>
-        <p><i id="i">""</i></p>
-        <h4 id="h2">-Author</h4>
-        <button (click)="readResponse()">prtisns</button>
-        <button (click)="logout()">logout</button>
+        <div class="quote" *ngFor="let SeperateQuote of quotes">
+            <h2 id="h">{{SeperateQuote.category}}</h2>
+            <p><i id="i">{{SeperateQuote.quote}}</i></p>
+            <h4 id="h2">-{{SeperateQuote.author}}</h4>
+            <button (click)="readResponse()">prtisns</button>
+            <button (click)="logout()">logout</button>
+        </div>
     </div>
 
     <div class="profile" (click)="onProfileClick()"></div>

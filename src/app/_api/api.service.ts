@@ -101,4 +101,8 @@ export class ApiService {
 
     return this.http.post(url, body);
   }
+
+  getAllQuotes(): Observable<any>{
+    return this.http.get("http://localhost:3000/quotes");
+  }
 }
