@@ -102,6 +102,12 @@ export class ApiService {
     return this.http.post(url, body);
   }
 
+  getAllUsers(): Observable<any>{
+    const url = 'http://localhost:3000/users';
+
+    return this.http.get(url);
+  }
+
   getAllQuotes(): Observable<any>{
     return this.http.get("http://localhost:3000/quotes");
   }
